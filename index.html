@@ -26,33 +26,33 @@
 
     <div id="perso">
       <div id="post"></div>
-      <img id="img" src="wolf.png" />
+      <img id="img" src="src/img/face.png" />
     </div>
 
     <script>
       // Displays GET request
-      let get = document.getElementById('get');
+      const get = document.getElementById('get');
 
       fetch('http://localhost:1664/api/v1/hero')
         .then(res => res.json())
         .then(json => (get.innerText += ` ${json.info}`));
 
-      let submit = document.getElementById('submit');
+      const submit = document.getElementById('submit');
 
       submit.addEventListener('click', e => {
         e.preventDefault();
 
         // Inner Html
-        let post = document.getElementById('post');
+        const post = document.getElementById('post');
         // Form
-        let form = document.getElementById('form');
+        const form = document.getElementById('form');
         // Img
-        let img = document.getElementById('img');
+        const img = document.getElementById('img');
         // Values from input
-        let name = document.getElementById('name').value;
-        let hp = parseInt(document.getElementById('hp').value);
+        const name = document.getElementById('name').value;
+        const hp = parseInt(document.getElementById('hp').value);
         // div #perso
-        let perso = document.getElementById('perso');
+        const perso = document.getElementById('perso');
         // Global state
         let start = false;
 
@@ -60,46 +60,45 @@
           method: 'POST',
           body: JSON.stringify({ name, hp })
         })
-          .then(res => res.json())
-          .then(json => (post.innerText += json.info))
+          .then(req => req.json())
+          .then(res => (post.innerText += res.info))
           .then((get.style.display = 'none'))
           .then((form.style.display = 'none'))
           .then(() => {
             img.style.display = 'block';
             return (start = true);
           })
-          .then(start => {
-            
-            if (start == true) {
-              var keysPressed = [false, false, false, false];
-              window.onkeydown = keyDownHandler;
-              window.onkeyup = keyUpHandler;
+          .then(next => {
+            let move = 0,
+              x = perso.style.left,
+              y = perso.style.top,
+              speed = 5;
 
-              function keyDownHandler(e) {
-                if (e.keyCode >= 37 && e.keyCode <= 40)
-                  keysPressed[e.keyCode - 37] = true;
+            document.addEventListener('keydown', e => {
+              e.preventDefault();
+
+              if (e.keyCode === 37) {
+                // LEFT
+                img.src = 'src/img/gauche1.png';
+                x--;
+                perso.style.left = speed * x + 'px';
+              } else if (e.keyCode === 38) {
+                // UP
+                img.src = 'src/img/haut1.png';
+                y--;
+                perso.style.top = speed * y + 'px';
+              } else if (e.keyCode === 39) {
+                // RIGHT
+                img.src = 'src/img/droite1.png';
+                x++;
+                perso.style.left = speed * x + 'px';
+              } else if (e.keyCode === 40) {
+                // DOWN
+                img.src = 'src/img/bas1.png';
+                y++;
+                perso.style.top = speed * y + 'px';
               }
-
-              function keyUpHandler(e) {
-                if (e.keyCode >= 37 && e.keyCode <= 40)
-                  keysPressed[e.keyCode - 37] = false;
-              }
-
-              var left = 0;
-              var top = 0;
-              var speed = 4;
-
-              function updateKeys() {
-                if (keysPressed[0]) left -= speed;
-                if (keysPressed[2]) left += speed;
-                if (keysPressed[1]) top -= speed;
-                if (keysPressed[3]) top += speed;
-
-                perso.style.left = left / 5 + 'px';
-                perso.style.top = top / 5 + 'px';
-              }
-              setInterval(updateKeys, 1);
-            }
+            });
           });
       });
     </script>
