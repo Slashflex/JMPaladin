@@ -1,0 +1,13 @@
+{
+  "name": "Slashflex/JMPaladin",
+  "authors": [
+    {
+      "name": "David",
+      "email": "pro.davidsaoud@gmail.com"
+    }
+  ],
+  "require-dev": {
+    "kahlan/kahlan": "^4.7"
+  },
+  "require": {}
+}
