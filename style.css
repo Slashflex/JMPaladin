@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  position: relative;
+  max-width: 1200px;
+  max-height: 100vh;
+}
+#perso {
+  width: 9rem;
+  position: absolute;
+}
+
+#post {
+  text-align: center;
+}
+
+#img {
+  display: none; 
+  width: 100%;
+}
