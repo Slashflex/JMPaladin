@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Client</title>
+  </head>
+  <body>
+    <form
+      action="http://localhost:1664/api/v1/create/hero"
+      autocomplete="off"
+      method="POST"
+      id="form"
+    >
+      <label for="name">Nom</label>
+      <input type="text" name="name" id="name" />
+
+      <label for="hp">Points de vie</label>
+      <input type="text" name="hp" id="hp" />
+
+      <button type="submit" id="submit">Submit</button>
+    </form>
+
+    <div id="get">Requete GET =></div>
+
+    <div id="perso">
+      <div id="post"></div>
+      <img id="img" src="wolf.png" />
+    </div>
+
+    <script>
+      // Displays GET request
+      let get = document.getElementById('get');
+
+      fetch('http://localhost:1664/api/v1/hero')
+        .then(res => res.json())
+        .then(json => (get.innerText += ` ${json.info}`));
+
+      let submit = document.getElementById('submit');
+
+      submit.addEventListener('click', e => {
+        e.preventDefault();
+
+        // Inner Html
+        let post = document.getElementById('post');
+        // Form
+        let form = document.getElementById('form');
+        // Img
+        let img = document.getElementById('img');
+        // Values from input
+        let name = document.getElementById('name').value;
+        let hp = parseInt(document.getElementById('hp').value);
+        // div #perso
+        let perso = document.getElementById('perso');
+        // Global state
+        let start = false;
+
+        fetch('http://localhost:1664/api/v1/create/hero', {
+          method: 'POST',
+          body: JSON.stringify({ name, hp })
+        })
+          .then(res => res.json())
+          .then(json => (post.innerText += json.info))
+          .then((get.style.display = 'none'))
+          .then((form.style.display = 'none'))
+          .then(() => {
+            img.style.display = 'block';
+            return (start = true);
+          })
+          .then(start => {
+            
+            if (start == true) {
+              var keysPressed = [false, false, false, false];
+              window.onkeydown = keyDownHandler;
+              window.onkeyup = keyUpHandler;
+
+              function keyDownHandler(e) {
+                if (e.keyCode >= 37 && e.keyCode <= 40)
+                  keysPressed[e.keyCode - 37] = true;
+              }
+
+              function keyUpHandler(e) {
+                if (e.keyCode >= 37 && e.keyCode <= 40)
+                  keysPressed[e.keyCode - 37] = false;
+              }
+
+              var left = 0;
+              var top = 0;
+              var speed = 4;
+
+              function updateKeys() {
+                if (keysPressed[0]) left -= speed;
+                if (keysPressed[2]) left += speed;
+                if (keysPressed[1]) top -= speed;
+                if (keysPressed[3]) top += speed;
+
+                perso.style.left = left / 5 + 'px';
+                perso.style.top = top / 5 + 'px';
+              }
+              setInterval(updateKeys, 1);
+            }
+          });
+      });
+    </script>
+  </body>
+</html>
