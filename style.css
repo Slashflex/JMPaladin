@@ -8,8 +8,9 @@ body {
   max-height: 100vh;
 }
 #perso {
-  width: 9rem;
+  width: 5rem;
   position: absolute;
+  transition: .2s ease;
 }
 
 #post {
