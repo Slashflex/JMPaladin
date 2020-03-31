@@ -22,85 +22,11 @@
       <button type="submit" id="submit">Submit</button>
     </form>
 
-    <div id="get">Requete GET =></div>
-
     <div id="perso">
       <div id="post"></div>
       <img id="img" src="src/img/face.png" />
     </div>
 
-    <script>
-      // Displays GET request
-      const get = document.getElementById('get');
-
-      fetch('http://localhost:1664/api/v1/hero')
-        .then(res => res.json())
-        .then(json => (get.innerText += ` ${json.info}`));
-
-      const submit = document.getElementById('submit');
-
-      submit.addEventListener('click', e => {
-        e.preventDefault();
-
-        // Inner Html
-        const post = document.getElementById('post');
-        // Form
-        const form = document.getElementById('form');
-        // Img
-        const img = document.getElementById('img');
-        // Values from input
-        const name = document.getElementById('name').value;
-        const hp = parseInt(document.getElementById('hp').value);
-        // div #perso
-        const perso = document.getElementById('perso');
-        // Global state
-        let start = false;
-
-        fetch('http://localhost:1664/api/v1/create/hero', {
-          method: 'POST',
-          body: JSON.stringify({ name, hp })
-        })
-          .then(req => req.json())
-          .then(res => (post.innerText += res.info))
-          .then((get.style.display = 'none'))
-          .then((form.style.display = 'none'))
-          .then(() => {
-            img.style.display = 'block';
-            return (start = true);
-          })
-          .then(next => {
-            let move = 0,
-              x = perso.style.left,
-              y = perso.style.top,
-              speed = 5;
-
-            document.addEventListener('keydown', e => {
-              e.preventDefault();
-
-              if (e.keyCode === 37) {
-                // LEFT
-                img.src = 'src/img/gauche1.png';
-                x--;
-                perso.style.left = speed * x + 'px';
-              } else if (e.keyCode === 38) {
-                // UP
-                img.src = 'src/img/haut1.png';
-                y--;
-                perso.style.top = speed * y + 'px';
-              } else if (e.keyCode === 39) {
-                // RIGHT
-                img.src = 'src/img/droite1.png';
-                x++;
-                perso.style.left = speed * x + 'px';
-              } else if (e.keyCode === 40) {
-                // DOWN
-                img.src = 'src/img/bas1.png';
-                y++;
-                perso.style.top = speed * y + 'px';
-              }
-            });
-          });
-      });
-    </script>
+    <script src="src/js/game.js"></script>
   </body>
 </html>
