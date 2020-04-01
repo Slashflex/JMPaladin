@@ -6,15 +6,21 @@ body {
   position: relative;
   max-width: 1200px;
   max-height: 100vh;
+  margin: 0 auto;
 }
 #perso {
-  width: 5rem;
+  width: 3rem;
   position: absolute;
   transition: .2s ease;
 }
 
 #post {
   text-align: center;
+  color: white;
+}
+
+#map {
+  display: none;
 }
 
 #img {
