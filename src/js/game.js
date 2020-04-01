@@ -42,16 +42,16 @@ submit.addEventListener('click', e => {
 
         switch (e.keyCode) {
           case 81:
-            img.src = 'src/img/characters/gauche1.png';
+            img.src = 'src/img/characters/left1.png';
             break;
           case 90:
-            img.src = 'src/img/characters/haut1.png';
+            img.src = 'src/img/characters/up1.png';
             break;
           case 68:
-            img.src = 'src/img/characters/droite1.png';
+            img.src = 'src/img/characters/right1.png';
             break;
           case 83:
-            img.src = 'src/img/characters/bas1.png';
+            img.src = 'src/img/characters/down1.png';
             break;
         }
       });

@@ -7,7 +7,7 @@ class Fight
   private $hero;
   private $vilain;
 
-  function __construct(Personage $hero, Personage $vilain)
+  function __construct(Character $hero, Character $vilain)
   {
     $this->hero = $hero;
     $this->vilain = $vilain;

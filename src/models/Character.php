@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-class Personage
+class Character
 {
   public $hp;
   public $name;
@@ -23,14 +23,14 @@ class Personage
     return $this->hp;
   }
 
-  public function hurt(int $value): Personage
+  public function hurt(int $value): Character
   {
     $this->hp -= $value;
 
     return $this;
   }
 
-  public function attack(Personage $enemy, int $value): Personage
+  public function attack(Character $enemy, int $value): Character
   {
     return $enemy->hurt($value);
   }
