@@ -1,5 +1,5 @@
 <?php
-require('utils/debug.php');
+require('./src/utils/debug.php');
 require('./src/models/Character.php');
 
 header('Content-Type: application/json;charset=utf-8');
