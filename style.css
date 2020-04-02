@@ -2,28 +2,109 @@
   margin: 0;
   padding: 0;
 }
+
 body {
   position: relative;
   max-width: 1200px;
   max-height: 100vh;
   margin: 0 auto;
+  background-color: #2d2e2d;
 }
+/* FORM */
+#form {
+  width: 50%;
+  margin: 0 auto;
+}
+#form label {
+  color: white;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+#form input {
+  width: 100%;
+  margin-bottom: .8rem;
+}
+#form button {
+  border: none;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  padding: .8rem 1.3rem;
+  transform: translateY(-3px);
+  transition: all .3s;
+  margin-top: 1.5rem;
+  box-shadow: 0px 6px 2px 0px rgba(172, 107, 4, 0.75);
+}
+#form button:hover {
+  background-color: white;
+  color: black;
+}
+#form button:active {
+  transform: translateY(0);
+  box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
+}
+#loading {
+  width: 100%;
+}
+#loading img {
+  margin: 0 auto;
+  width: 50%;
+}
+#charInfo {
+  background-color: aliceblue;
+  position: relative;
+  padding: 1rem;
+  bottom: 0;
+  left: 0;
+  display: none;
+}
+
 #perso {
-  width: 3rem;
+  width: 2.5rem;
   position: absolute;
   transition: .2s ease;
 }
 
 #post {
   text-align: center;
-  color: white;
 }
 
-#map {
+#mapTown {
   display: none;
 }
-
-#img {
-  display: none; 
+#mapFight {
+  display: none;
+  margin: 0 auto;
   width: 100%;
+}
+
+#char {
+  display: none;
+  width: 100%;
+}
+
+#fightTile {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 486px;
+  left: 624px;
+}
+
+#startFight h3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 3rem;
+  color: red;
+  background-color: beige;
+  animation: startFight .3s;
+}
+
+@keyframes startFight {
+  0% { opacity: 1 }
+  100% { opacity: 0;}
 }
