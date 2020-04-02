@@ -7,6 +7,10 @@
     <title>Client</title>
   </head>
   <body>
+    <aside id="charInfo">
+      <div id="post"></div>
+    </aside>
+
     <form
       action="http://localhost:1664/api/v1/create/hero"
       autocomplete="off"
@@ -14,22 +18,32 @@
       id="form"
     >
       <label for="name">Nom</label>
+      <br>
       <input type="text" name="name" id="name" />
-
+      <br>
       <label for="hp">Points de vie</label>
+      <br>
       <input type="text" name="hp" id="hp" />
-
+      <br>
       <button type="submit" id="submit">Submit</button>
     </form>
 
-    <div id="perso">
-      <div id="post"></div>
-      <img id="img" src="src/img/characters/face.png" />
+    <div id="perso" style="left: 560px; top: 413px;">
+      <img id="char" src="src/img/characters/face.png" />
     </div>
 
     <div id="map">
-      <img id="mapImg" src="src/img/maps/mapTown.png" alt="">
+      <div id="fightTile"></div>
+      <img id="mapTown" src="src/img/maps/mapTown.png" alt="">
+      <img id="mapFight" src="src/img/maps/mapFight.png" alt="">
     </div>
+
+    <div id="loading">
+      <img id="loader" style="display:none" src="src/img/ui/loader.gif" />
+    </div>
+    <!-- <div id="startFight" style="display: none">
+      <h3>The fight begins</h3>
+    </div> -->
 
     <script src="src/js/game.js"></script>
   </body>
